@@ -84,7 +84,8 @@ class QS
 			number[right] = t;
 			nt = this.Sort(left, i - 1);
 			nt = this.Sort(i + 1, right);
-		} else
+		}
+		else
 			nt = 0;
 		return 0;
 	}

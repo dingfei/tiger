@@ -8,7 +8,7 @@ class Sum
 
 class Doit
 {
-	public int doit(int n) 
+	public int doit(int n)
 	{
 		int sum;
 		int i;

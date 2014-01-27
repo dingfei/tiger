@@ -57,7 +57,8 @@ class BBS
 					t = number[aux06];
 					number[aux06] = number[j];
 					number[j] = t;
-				} else
+				}
+				else
 					nt = 0;
 				j = j + 1;
 			}

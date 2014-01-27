@@ -158,14 +158,16 @@ class List
 				{
 					// delete first element
 					my_head = aux01.GetNext();
-				} else
+				}
+				else
 				{ // delete a non first element
 					System.out.println(0 - 555);
 					aux05 = prev.SetNext(aux01.GetNext());
 					System.out.println(0 - 555);
 
 				}
-			} else
+			}
+			else
 				nt = 0;
 			if (!ret_val)
 			{
@@ -174,7 +176,8 @@ class List
 				var_end = aux01.GetEnd();
 				var_elem = aux01.GetElem();
 				aux04 = 1;
-			} else
+			}
+			else
 				nt = 0;
 		}
 		return my_head;
@@ -198,7 +201,8 @@ class List
 			if (e.Equal(var_elem))
 			{
 				int_ret_val = 1;
-			} else
+			}
+			else
 				nt = 0;
 			aux01 = aux01.GetNext();
 			var_end = aux01.GetEnd();

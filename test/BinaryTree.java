@@ -164,7 +164,8 @@ class Tree
 					ntb = current_node.SetHas_Left(true);
 					ntb = current_node.SetLeft(new_node);
 				}
-			} else
+			}
+			else
 			{
 				if (current_node.GetHas_Right())
 					current_node = current_node.GetRight();
@@ -203,14 +204,16 @@ class Tree
 				{
 					parent_node = current_node;
 					current_node = current_node.GetLeft();
-				} else
+				}
+				else
 					cont = false;
 			else if (key_aux < v_key)
 				if (current_node.GetHas_Right())
 				{
 					parent_node = current_node;
 					current_node = current_node.GetRight();
-				} else
+				}
+				else
 					cont = false;
 			else
 			{
@@ -252,7 +255,8 @@ class Tree
 			{
 				ntb = p_node.SetLeft(my_null);
 				ntb = p_node.SetHas_Left(false);
-			} else
+			}
+			else
 			{
 				ntb = p_node.SetRight(my_null);
 				ntb = p_node.SetHas_Right(false);
@@ -357,7 +361,8 @@ class Tree
 			// auxtree01 = node.GetLeft() ;
 			// ntb = this.RecPrint(auxtree01);
 			ntb = this.RecPrint(node.GetLeft());
-		} else
+		}
+		else
 			ntb = true;
 		System.out.println(node.GetKey());
 		if (node.GetHas_Right())
@@ -365,7 +370,8 @@ class Tree
 			// auxtree01 = node.GetRight() ;
 			// ntb = this.RecPrint(auxtree01);
 			ntb = this.RecPrint(node.GetRight());
-		} else
+		}
+		else
 			ntb = true;
 		return true;
 	}

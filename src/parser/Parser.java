@@ -489,10 +489,9 @@ public class Parser
 		return;
 	}
 
-	
-  public ast.program.T parse()
-  {
-    parseProgram();
-    return null;
-  }
+	public ast.program.T parse()
+	{
+		parseProgram();
+		return null;
+	}
 }

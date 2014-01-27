@@ -50,7 +50,8 @@ public class CommandLine
 							if (s.equals("classTable"))
 							{
 								control.Control.elabClassTable = true;
-							} else if (s.equals("methodTable"))
+							}
+							else if (s.equals("methodTable"))
 								Control.elabMethodTable = true;
 							else
 							{
@@ -106,13 +107,15 @@ public class CommandLine
 				{
 					filename = cargs[i];
 					continue;
-				} else
+				}
+				else
 				{
 					System.out
 							.println("Error: can only compile one Java file a time");
 					System.exit(1);
 				}
-			} else
+			}
+			else
 				;
 
 			boolean found = false;
@@ -121,65 +124,74 @@ public class CommandLine
 				if (!arg.name.equals(cargs[i].substring(1)))
 					continue;
 
-				
-        found = true;
-        String theArg = null;
-        switch (arg.kind) {
-        case Empty:
-          arg.action.f(null);
-          break;
-        default:
-          if (i >= cargs.length - 1) {
-            System.out.println(arg.name + ": requires an argument");
-            this.output();
-            System.exit(1);
-          }
-          theArg = cargs[++i];
-          break;
-        }
-        switch (arg.kind) {
-        case Bool:
-          if (theArg.equals("true"))
-            arg.action.f(new Boolean(true));
-          else if (theArg.equals("false"))
-            arg.action.f(new Boolean(false));
-          else {
-            System.out.println(arg.name + ": requires a boolean");
-            this.output();
-            System.exit(1);
-          }
-          break;
-        case Int:
-          int num = 0;
-          try {
-            num = Integer.parseInt(theArg);
-          } catch (java.lang.NumberFormatException e) {
-            System.out.println(arg.name + ": requires an integer");
-            this.output();
-            System.exit(1);
-          }
-          arg.action.f(num);
-          break;
-        case String:
-          arg.action.f(theArg);
-          break;
-        case StringList:
-          String[] strArray = theArg.split(",");
-          arg.action.f(strArray);
-          break;
-        default:
-          break;
-        }
-        break;
-      }
-      if (!found) {
-        System.out.println("undefined switch: " + cargs[i]);
-        this.output();
-        System.exit(1);
-      }
-    }
-    return filename;
-  }
+				found = true;
+				String theArg = null;
+				switch (arg.kind)
+				{
+					case Empty:
+						arg.action.f(null);
+						break;
+					default:
+						if (i >= cargs.length - 1)
+						{
+							System.out.println(arg.name
+									+ ": requires an argument");
+							this.output();
+							System.exit(1);
+						}
+						theArg = cargs[++i];
+						break;
+				}
+				switch (arg.kind)
+				{
+					case Bool:
+						if (theArg.equals("true"))
+							arg.action.f(new Boolean(true));
+						else if (theArg.equals("false"))
+							arg.action.f(new Boolean(false));
+						else
+						{
+							System.out.println(arg.name
+									+ ": requires a boolean");
+							this.output();
+							System.exit(1);
+						}
+						break;
+					case Int:
+						int num = 0;
+						try
+						{
+							num = Integer.parseInt(theArg);
+						} catch (java.lang.NumberFormatException e)
+						{
+							System.out.println(arg.name
+									+ ": requires an integer");
+							this.output();
+							System.exit(1);
+						}
+						arg.action.f(num);
+						break;
+					case String:
+						arg.action.f(theArg);
+						break;
+					case StringList:
+						String[] strArray = theArg.split(",");
+						arg.action.f(strArray);
+						break;
+					default:
+						break;
+				}
+				break;
+			}
+			if (!found)
+			{
+				System.out.println("undefined switch: " + cargs[i]);
+				this.output();
+				System.exit(1);
+			}
+		}
+		return filename;
+	}
 
 	private void outputSpace(int n)
 	{
@@ -215,7 +227,8 @@ public class CommandLine
 			{
 				current += a.option.length();
 				System.out.print(a.option);
-			} else
+			}
+			else
 				;
 			outputSpace(max - current + 1);
 			System.out.println(a.desription);
