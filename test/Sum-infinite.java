@@ -6,7 +6,7 @@ class Sum
 	}
 }
 
-class Doit
+class Doit 
 {
 	public int doit(int n)
 	{
