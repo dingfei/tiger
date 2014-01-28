@@ -21,6 +21,19 @@ public class Tiger
 
 		String fname = "G:\\workspace\\tiger\\test\\TreeVisitor.java";
 
+		// /////////////////////////////////////////////////////
+		// to test the pretty printer on the "test/Fac.java" program
+		// if (control.Control.testFac)
+		// {
+		// System.out
+		// .println("Testing the Tiger compiler on Fac.java starting:");
+		// ast.PrettyPrintVisitor pp = new ast.PrettyPrintVisitor();
+		// ast.Fac.prog.accept(pp);
+		// System.out
+		// .println("Testing the Tiger compiler on Fac.java finished.");
+		// System.exit(1);
+		// }
+
 		// if (fname == null)
 		// {
 		// cmd.usage();
@@ -54,6 +67,8 @@ public class Tiger
 		// /////////////////////////////////////////////////////////
 		// normal compilation phases.
 		ast.program.T theAst = null;
+
+		// parsing the file, get an AST.
 		try
 		{
 			fstream = new BufferedInputStream(new FileInputStream(fname));
@@ -76,8 +91,9 @@ public class Tiger
 		}
 
 		// elaborate the AST, report all possible errors.
-		elaborator.ElaboratorVisitor elab = new elaborator.ElaboratorVisitor();
-		theAst.accept(elab);
+		// elaborator.ElaboratorVisitor elab = new
+		// elaborator.ElaboratorVisitor();
+		// theAst.accept(elab);
 
 		return;
 	}

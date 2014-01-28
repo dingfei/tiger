@@ -6,8 +6,9 @@ public class Class extends T
 {
 	public String id;
 
-	public Class(String id)
+	public Class(String id, int line)
 	{
+		this.lineNum = line;
 		this.id = id;
 	}
 

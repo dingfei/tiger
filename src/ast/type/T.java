@@ -8,4 +8,6 @@ public abstract class T implements ast.Acceptable
 	// class: 2
 	// Such that one can easily tell who is who
 	public abstract int getNum();
+
+	public int lineNum;
 }

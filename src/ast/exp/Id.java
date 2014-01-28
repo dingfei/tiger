@@ -6,18 +6,20 @@ public class Id extends T
 	public ast.type.T type; // type of the id
 	public boolean isField; // whether or not this is a class field
 
-	public Id(String id)
+	public Id(String id, int line)
 	{
 		this.id = id;
 		this.type = null;
 		this.isField = false;
+		this.lineNum = line;
 	}
 
-	public Id(String id, ast.type.T type, boolean isField)
+	public Id(String id, ast.type.T type, boolean isField, int line)
 	{
 		this.id = id;
 		this.type = type;
 		this.isField = isField;
+		this.lineNum = line;
 	}
 
 	@Override

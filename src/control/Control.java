@@ -7,7 +7,7 @@ public class Control
 	public static boolean testFac = false;
 
 	// lexer and parser
-	public static boolean lex = false;
+	public static boolean lex = true;
 
 	// ast
 	public static boolean dumpAst = false;

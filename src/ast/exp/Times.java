@@ -5,10 +5,11 @@ public class Times extends T
 	public T left;
 	public T right;
 
-	public Times(T left, T right)
+	public Times(T left, T right, int line)
 	{
 		this.left = left;
 		this.right = right;
+		this.lineNum = line;
 	}
 
 	@Override

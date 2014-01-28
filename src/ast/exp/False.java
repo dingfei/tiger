@@ -2,8 +2,9 @@ package ast.exp;
 
 public class False extends T
 {
-	public False()
+	public False(int line)
 	{
+		this.lineNum = line;
 	}
 
 	@Override

@@ -2,8 +2,9 @@ package ast.exp;
 
 public class This extends T
 {
-	public This()
+	public This(int line)
 	{
+		this.lineNum = line;
 	}
 
 	@Override

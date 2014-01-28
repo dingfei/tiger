@@ -5,10 +5,11 @@ public class ArraySelect extends T
 	public T array;
 	public T index;
 
-	public ArraySelect(T array, T index)
+	public ArraySelect(T array, T index, int line)
 	{
 		this.array = array;
 		this.index = index;
+		this.lineNum = line;
 	}
 
 	@Override

@@ -2,11 +2,12 @@ package ast.exp;
 
 public class NewObject extends T
 {
-	public String id;
+	public ast.exp.Id Id;
 
-	public NewObject(String id)
+	public NewObject(ast.exp.Id Id, int line)
 	{
-		this.id = id;
+		this.Id = Id;
+		this.lineNum = line;
 	}
 
 	@Override

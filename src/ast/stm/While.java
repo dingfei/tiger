@@ -5,8 +5,9 @@ public class While extends T
 	public ast.exp.T condition;
 	public T body;
 
-	public While(ast.exp.T condition, T body)
+	public While(ast.exp.T condition, T body, int line)
 	{
+		this.lineNum = line;
 		this.condition = condition;
 		this.body = body;
 	}

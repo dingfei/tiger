@@ -4,8 +4,9 @@ import ast.Visitor;
 
 public class IntArray extends T
 {
-	public IntArray()
+	public IntArray(int line)
 	{
+		this.lineNum = line;
 	}
 
 	@Override

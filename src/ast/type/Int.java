@@ -4,8 +4,9 @@ import ast.Visitor;
 
 public class Int extends T
 {
-	public Int()
+	public Int(int line)
 	{
+		this.lineNum = line;
 	}
 
 	@Override

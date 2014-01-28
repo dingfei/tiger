@@ -4,9 +4,10 @@ public class Length extends T
 {
 	public T array;
 
-	public Length(T array)
+	public Length(T array, int line)
 	{
 		this.array = array;
+		this.lineNum = line;
 	}
 
 	@Override

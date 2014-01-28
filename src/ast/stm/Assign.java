@@ -2,15 +2,14 @@ package ast.stm;
 
 public class Assign extends T
 {
-	public String id;
+	public ast.exp.Id Id;
 	public ast.exp.T exp;
-	public ast.type.T type; // type of the id
 
-	public Assign(String id, ast.exp.T exp)
+	public Assign(ast.exp.Id Id, ast.exp.T exp, int line)
 	{
-		this.id = id;
+		this.lineNum = line;
+		this.Id = Id;
 		this.exp = exp;
-		this.type = null;
 	}
 
 	@Override

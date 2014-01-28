@@ -14,8 +14,9 @@ public class Method extends T
 	public Method(ast.type.T retType, String id,
 			java.util.LinkedList<ast.dec.T> formals,
 			java.util.LinkedList<ast.dec.T> locals,
-			java.util.LinkedList<ast.stm.T> stms, ast.exp.T retExp)
+			java.util.LinkedList<ast.stm.T> stms, ast.exp.T retExp, int line)
 	{
+		this.lineNum = line;
 		this.retType = retType;
 		this.id = id;
 		this.formals = formals;

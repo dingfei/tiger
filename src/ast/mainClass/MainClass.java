@@ -4,13 +4,14 @@ import ast.Visitor;
 
 public class MainClass extends T
 {
-	public String id;
-	public String arg;
+	public ast.exp.T Id;
+	public ast.exp.T arg;
 	public ast.stm.T stm;
 
-	public MainClass(String id, String arg, ast.stm.T stm)
+	public MainClass(ast.exp.T Id, ast.exp.T arg, ast.stm.T stm, int line)
 	{
-		this.id = id;
+		this.lineNum = line;
+		this.Id = Id;
 		this.arg = arg;
 		this.stm = stm;
 	}

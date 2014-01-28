@@ -8,8 +8,9 @@ public class Program extends T
 	public java.util.LinkedList<ast.classs.T> classes;
 
 	public Program(ast.mainClass.T mainClass,
-			java.util.LinkedList<ast.classs.T> classes)
+			java.util.LinkedList<ast.classs.T> classes, int line)
 	{
+		this.lineNum = line;
 		this.mainClass = mainClass;
 		this.classes = classes;
 	}

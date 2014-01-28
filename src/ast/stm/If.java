@@ -6,8 +6,9 @@ public class If extends T
 	public T thenn;
 	public T elsee;
 
-	public If(ast.exp.T condition, T thenn, T elsee)
+	public If(ast.exp.T condition, T thenn, T elsee, int line)
 	{
+		this.lineNum = line;
 		this.condition = condition;
 		this.thenn = thenn;
 		this.elsee = elsee;
