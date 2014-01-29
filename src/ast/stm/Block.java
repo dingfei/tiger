@@ -4,9 +4,8 @@ public class Block extends T
 {
 	public java.util.LinkedList<T> stms;
 
-	public Block(java.util.LinkedList<T> stms, int line)
+	public Block(java.util.LinkedList<T> stms)
 	{
-		this.lineNum = line;
 		this.stms = stms;
 	}
 

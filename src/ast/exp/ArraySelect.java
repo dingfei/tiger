@@ -2,12 +2,12 @@ package ast.exp;
 
 public class ArraySelect extends T
 {
-	public T array;
+	public ast.exp.Id Id;
 	public T index;
 
-	public ArraySelect(T array, T index, int line)
+	public ArraySelect(ast.exp.Id Id, T index, int line)
 	{
-		this.array = array;
+		this.Id = Id;
 		this.index = index;
 		this.lineNum = line;
 	}

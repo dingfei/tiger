@@ -1,5 +1,7 @@
 package ast;
 
+import ast.exp.Parenthesis;
+
 public class PrettyPrintVisitor implements Visitor
 {
 	private int indentLevel;
@@ -63,7 +65,7 @@ public class PrettyPrintVisitor implements Visitor
 	@Override
 	public void visit(ast.exp.ArraySelect e)
 	{
-		e.array.accept(this);
+		e.Id.accept(this);
 		this.say("[");
 		e.index.accept(this);
 		this.say("]");
@@ -104,6 +106,8 @@ public class PrettyPrintVisitor implements Visitor
 	@Override
 	public void visit(ast.exp.Length e)
 	{
+		e.array.accept(this);
+		this.say(".length");
 	}
 
 	@Override
@@ -118,9 +122,9 @@ public class PrettyPrintVisitor implements Visitor
 	@Override
 	public void visit(ast.exp.NewIntArray e)
 	{
-		this.say("new ");
+		this.say("new int[");
 		e.exp.accept(this);
-		this.say("[]");
+		this.say("]");
 		return;
 	}
 
@@ -143,6 +147,16 @@ public class PrettyPrintVisitor implements Visitor
 	public void visit(ast.exp.Num e)
 	{
 		System.out.print(e.num);
+		return;
+	}
+
+	@Override
+	public void visit(Parenthesis e)
+	{
+		// TODO Auto-generated method stub
+		this.say("(");
+		e.exp.accept(this);
+		this.say(")");
 		return;
 	}
 
@@ -185,7 +199,7 @@ public class PrettyPrintVisitor implements Visitor
 		this.printSpaces();
 		this.say(s.Id.id + " = ");
 		s.exp.accept(this);
-		this.say(";");
+		this.sayln(";");
 		return;
 	}
 
@@ -193,17 +207,19 @@ public class PrettyPrintVisitor implements Visitor
 	public void visit(ast.stm.AssignArray s)
 	{
 		this.printSpaces();
-		this.say(s.Id.id + "[");
-		s.index.accept(this);
+		this.say(s.as.Id.id + "[");
+		s.as.index.accept(this);
 		this.say("] = ");
 		s.exp.accept(this);
-		this.say(";");
+		this.sayln(";");
 		return;
 	}
 
 	@Override
 	public void visit(ast.stm.Block s)
 	{
+		for (ast.stm.T x : s.stms)
+			x.accept(this);
 	}
 
 	@Override
@@ -216,12 +232,10 @@ public class PrettyPrintVisitor implements Visitor
 		this.indent();
 		s.thenn.accept(this);
 		this.unIndent();
-		this.sayln("");
 		this.printSpaces();
 		this.sayln("else");
 		this.indent();
 		s.elsee.accept(this);
-		this.sayln("");
 		this.unIndent();
 		return;
 	}
@@ -230,7 +244,7 @@ public class PrettyPrintVisitor implements Visitor
 	public void visit(ast.stm.Print s)
 	{
 		this.printSpaces();
-		this.say("System.out.println (");
+		this.say("System.out.println(");
 		s.exp.accept(this);
 		this.sayln(");");
 		return;
@@ -240,12 +254,16 @@ public class PrettyPrintVisitor implements Visitor
 	public void visit(ast.stm.While s)
 	{
 		this.printSpaces();
-		this.say("while(");
+		this.say("while (");
 		s.condition.accept(this);
-		this.say(")");
+		this.sayln(")");
+		this.printSpaces();
+		this.sayln("{");
 		this.indent();
 		s.body.accept(this);
 		this.unIndent();
+		this.printSpaces();
+		this.sayln("}");
 		return;
 
 	}
@@ -327,9 +345,9 @@ public class PrettyPrintVisitor implements Visitor
 	@Override
 	public void visit(ast.classs.Class c)
 	{
-		this.say("class " + c.id);
+		this.say("class " + c.Id.id);
 		if (c.extendss != null)
-			this.sayln(" extends " + c.extendss);
+			this.sayln(" extends " + c.extendss.id);
 		else
 			this.sayln("");
 
@@ -355,7 +373,8 @@ public class PrettyPrintVisitor implements Visitor
 	{
 		this.sayln("class " + ((ast.exp.Id) c.Id).id);
 		this.sayln("{");
-		this.sayln("  public static void main (String [] " + c.arg + ")");
+		this.sayln("  public static void main(String[] "
+				+ ((ast.exp.Id) c.arg).id + ")");
 		this.sayln("  {");
 		c.stm.accept(this);
 		this.sayln("  }");
@@ -375,4 +394,5 @@ public class PrettyPrintVisitor implements Visitor
 		}
 		System.out.println("\n\n");
 	}
+
 }

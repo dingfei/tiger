@@ -35,6 +35,8 @@ public interface Visitor
 
 	public void visit(ast.exp.True e);
 
+	public void visit(ast.exp.Parenthesis e);
+
 	// statements
 	public void visit(ast.stm.Assign s);
 
@@ -71,4 +73,5 @@ public interface Visitor
 
 	// program
 	public void visit(ast.program.Program p);
+
 }

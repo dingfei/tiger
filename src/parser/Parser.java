@@ -85,7 +85,7 @@ public class Parser
 				advance();
 				exp = parseExp();
 				eatToken(Kind.TOKEN_RPAREN);
-				return exp;
+				return new ast.exp.Parenthesis(exp, this.current.lineNum);
 			case TOKEN_NUM:
 				int num = Integer.parseInt(this.current.lexeme);
 				advance();
@@ -100,8 +100,9 @@ public class Parser
 				advance();
 				return new ast.exp.This(this.current.lineNum);
 			case TOKEN_ID:
+				String id = this.current.lexeme;
 				advance();
-				return new ast.exp.Id(this.current.lexeme, this.current.lineNum);
+				return new ast.exp.Id(id, this.current.lineNum);
 			case TOKEN_NEW:
 			{
 				advance();
@@ -164,7 +165,8 @@ public class Parser
 				advance();
 				ast.exp.T index = parseExp();
 				eatToken(Kind.TOKEN_RBRACK);
-				exp = new ast.exp.ArraySelect(exp, index, this.current.lineNum);
+				exp = new ast.exp.ArraySelect((ast.exp.Id) exp, index,
+						this.current.lineNum);
 			}
 		}
 		return exp;
@@ -211,9 +213,10 @@ public class Parser
 		ast.exp.T left = parseAddSubExp();
 		while (current.kind == Kind.TOKEN_ADD || current.kind == Kind.TOKEN_SUB)
 		{
+			Kind kind = this.current.kind;
 			advance();
 			ast.exp.T right = parseAddSubExp();
-			if (current.kind == Kind.TOKEN_ADD)
+			if (kind == Kind.TOKEN_ADD)
 				left = new ast.exp.Add(left, right, this.current.lineNum);
 			else
 				left = new ast.exp.Sub(left, right, this.current.lineNum);
@@ -265,9 +268,9 @@ public class Parser
 		{
 			case TOKEN_LBRACE:
 				eatToken(Kind.TOKEN_LBRACE);
-				parseStatements();
+				java.util.LinkedList<ast.stm.T> blocks = parseStatements();
 				eatToken(Kind.TOKEN_RBRACE);
-				break;
+				return new ast.stm.Block(blocks);
 			case TOKEN_IF:
 				eatToken(Kind.TOKEN_IF);
 				eatToken(Kind.TOKEN_LPAREN);
@@ -424,14 +427,15 @@ public class Parser
 			ast.exp.Id Id = null;
 
 			type = parseType();
-			Id = (ast.exp.Id) parseExp();
+			Id = (ast.exp.Id) parseAtomExp();
 			dec = new ast.dec.Dec(type, Id, this.current.lineNum);
 			formals.add(dec);
 			while (current.kind == Kind.TOKEN_COMMER)
 			{
 				advance();
 				type = parseType();
-				Id = (ast.exp.Id) parseExp();
+				Id = (ast.exp.Id) parseAtomExp();
+				dec = new ast.dec.Dec(type, Id, this.current.lineNum);
 				formals.add(dec);
 			}
 		}
