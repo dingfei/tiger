@@ -4,6 +4,11 @@ import ast.Visitor;
 
 public class Boolean extends T
 {
+
+	public Boolean()
+	{
+	}
+
 	public Boolean(int line)
 	{
 		this.lineNum = line;

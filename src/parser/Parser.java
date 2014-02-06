@@ -264,6 +264,7 @@ public class Parser
 		// to parse a statement.
 
 		ast.stm.T stm = null;
+		int line = 0;
 		switch (current.kind)
 		{
 			case TOKEN_LBRACE:
@@ -273,25 +274,27 @@ public class Parser
 				return new ast.stm.Block(blocks);
 			case TOKEN_IF:
 				eatToken(Kind.TOKEN_IF);
+				line = this.current.lineNum;
 				eatToken(Kind.TOKEN_LPAREN);
 				ast.exp.T ifcon = parseExp();
 				eatToken(Kind.TOKEN_RPAREN);
 				ast.stm.T ifstm1 = parseStatement();
 				eatToken(Kind.TOKEN_ELSE);
 				ast.stm.T ifstm2 = parseStatement();
-				stm = new ast.stm.If(ifcon, ifstm1, ifstm2,
-						this.current.lineNum);
+				stm = new ast.stm.If(ifcon, ifstm1, ifstm2, line);
 				break;
 			case TOKEN_WHILE:
 				eatToken(Kind.TOKEN_WHILE);
+				line = this.current.lineNum;
 				eatToken(Kind.TOKEN_LPAREN);
 				ast.exp.T whiexp = parseExp();
 				eatToken(Kind.TOKEN_RPAREN);
 				ast.stm.T whistm = parseStatement();
-				stm = new ast.stm.While(whiexp, whistm, this.current.lineNum);
+				stm = new ast.stm.While(whiexp, whistm, line);
 				break;
 			case TOKEN_SYSTEM:
 				eatToken(Kind.TOKEN_SYSTEM);
+				line = this.current.lineNum;
 				eatToken(Kind.TOKEN_DOT);
 				eatToken(Kind.TOKEN_OUT);
 				eatToken(Kind.TOKEN_DOT);
@@ -300,25 +303,26 @@ public class Parser
 				ast.exp.T sysexp = parseExp();
 				eatToken(Kind.TOKEN_RPAREN);
 				eatToken(Kind.TOKEN_SEMI);
-				stm = new ast.stm.Print(sysexp, this.current.lineNum);
+				stm = new ast.stm.Print(sysexp, line);
 				break;
 			case TOKEN_ID:
 				ast.exp.T exp = parseExp();
 				if (exp instanceof ast.exp.Id)
 				{
 					eatToken(Kind.TOKEN_ASSIGN);
+					line = this.current.lineNum;
 					ast.exp.T ass = parseExp();
 					eatToken(Kind.TOKEN_SEMI);
-					stm = new ast.stm.Assign((ast.exp.Id) exp, ass,
-							this.current.lineNum);
+					stm = new ast.stm.Assign((ast.exp.Id) exp, ass, line);
 				}
 				else if (exp instanceof ast.exp.ArraySelect)
 				{
 					eatToken(Kind.TOKEN_ASSIGN);
+					line = this.current.lineNum;
 					ast.exp.T ass = parseExp();
 					eatToken(Kind.TOKEN_SEMI);
 					stm = new ast.stm.AssignArray((ast.exp.ArraySelect) exp,
-							ass, this.current.lineNum);
+							ass, line);
 				}
 				break;
 			default:
@@ -548,7 +552,8 @@ public class Parser
 		ast.stm.T stm = parseStatement();
 		eatToken(Kind.TOKEN_RBRACE);
 		eatToken(Kind.TOKEN_RBRACE);
-		return new ast.mainClass.MainClass(Id1, Id2, stm, this.current.lineNum);
+		return new ast.mainClass.MainClass((ast.exp.Id) Id1, Id2, stm,
+				this.current.lineNum);
 	}
 
 	// Program -> MainClass ClassDecl*

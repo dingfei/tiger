@@ -4,11 +4,11 @@ import ast.Visitor;
 
 public class MainClass extends T
 {
-	public ast.exp.T Id;
+	public ast.exp.Id Id;
 	public ast.exp.T arg;
 	public ast.stm.T stm;
 
-	public MainClass(ast.exp.T Id, ast.exp.T arg, ast.stm.T stm, int line)
+	public MainClass(ast.exp.Id Id, ast.exp.T arg, ast.stm.T stm, int line)
 	{
 		this.lineNum = line;
 		this.Id = Id;

@@ -12,6 +12,12 @@ public class Class extends T
 		this.id = id;
 	}
 
+	public Class(String id)
+	{
+		this.id = id;
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String toString()
 	{

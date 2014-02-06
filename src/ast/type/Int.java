@@ -9,6 +9,11 @@ public class Int extends T
 		this.lineNum = line;
 	}
 
+	public Int()
+	{
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String toString()
 	{

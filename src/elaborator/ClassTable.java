@@ -1,15 +1,15 @@
 package elaborator;
 
-import util.Todo;
+import java.util.Iterator;
 
 public class ClassTable
 {
 	// map each class name (a string), to the class bindings.
-	private java.util.Hashtable<String, ClassBinding> table;
+	private java.util.LinkedHashMap<String, ClassBinding> table;
 
 	public ClassTable()
 	{
-		this.table = new java.util.Hashtable<String, ClassBinding>();
+		this.table = new java.util.LinkedHashMap<String, ClassBinding>();
 	}
 
 	// Duplication is not allowed
@@ -84,7 +84,44 @@ public class ClassTable
 
 	public void dump()
 	{
-		new Todo();
+		System.out.println("===ClassTable dump start:===\n");
+
+		Iterator<String> className = this.table.keySet().iterator();
+
+		while (className.hasNext())
+		{
+			String strClassName = className.next();
+			System.out.println("Class name: " + strClassName);
+			ClassBinding cb = this.table.get(strClassName);
+
+			if (cb.fields != null)
+			{
+				java.util.LinkedHashMap<String, ast.type.T> fields = cb.fields;
+				Iterator<String> fieldsName = fields.keySet().iterator();
+				while (fieldsName.hasNext())
+				{
+					String strFieldsName = fieldsName.next();
+					System.out.print("Fields name: " + strFieldsName + "	");
+					System.out.println("Fields type: "
+							+ fields.get(strFieldsName).toString());
+				}
+			}
+
+			if (cb.methods != null)
+			{
+				java.util.LinkedHashMap<String, MethodType> methods = cb.methods;
+				Iterator<String> methodsName = methods.keySet().iterator();
+				while (methodsName.hasNext())
+				{
+					String strMethodsName = methodsName.next();
+					System.out.print("Method name: " + strMethodsName + "	");
+					System.out.println("Mehotd type: "
+							+ methods.get(strMethodsName));
+				}
+			}
+			// System.out.println();
+		}
+		System.out.println("\n===ClassTable dump end.===\n");
 	}
 
 	@Override
