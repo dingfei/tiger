@@ -91,7 +91,18 @@ public class ElaboratorVisitor implements ast.Visitor
 		{
 			ast.dec.Dec dec = (ast.dec.Dec) mty.argsType.get(i);
 			if (!dec.type.toString().equals(argsty.get(i).toString()))
-				error(e.lineNum);
+			{
+				if (argsty.get(i) instanceof ast.type.Class)
+				{
+					String strClass = argsty.get(i).toString();
+					ClassBinding cb = this.classTable.get(strClass);
+					if (cb.extendss != null)
+						if (!cb.extendss.equals(dec.type.toString()))
+							error(e.lineNum);
+				}
+				else
+					error(e.lineNum);
+			}
 
 		}
 		this.type = mty.retType;
