@@ -4,25 +4,31 @@ import ast.Visitor;
 
 public class Int extends T
 {
-  public Int()
-  {
-  }
+	public Int(int line)
+	{
+		this.lineNum = line;
+	}
 
-  @Override
-  public String toString()
-  {
-    return "@int";
-  }
+	public Int()
+	{
+		// TODO Auto-generated constructor stub
+	}
 
-  @Override
-  public void accept(Visitor v)
-  {
-    v.visit(this);
-  }
+	@Override
+	public String toString()
+	{
+		return "@int";
+	}
 
-  @Override
-  public int getNum()
-  {
-    return 0;
-  }
+	@Override
+	public void accept(Visitor v)
+	{
+		v.visit(this);
+	}
+
+	@Override
+	public int getNum()
+	{
+		return 0;
+	}
 }

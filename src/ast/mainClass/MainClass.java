@@ -4,22 +4,23 @@ import ast.Visitor;
 
 public class MainClass extends T
 {
-  public String id;
-  public String arg;
-  public ast.stm.T stm;
+	public ast.exp.Id Id;
+	public ast.exp.T arg;
+	public ast.stm.T stm;
 
-  public MainClass(String id, String arg, ast.stm.T stm)
-  {
-    this.id = id;
-    this.arg = arg;
-    this.stm = stm;
-  }
+	public MainClass(ast.exp.Id Id, ast.exp.T arg, ast.stm.T stm, int line)
+	{
+		this.lineNum = line;
+		this.Id = Id;
+		this.arg = arg;
+		this.stm = stm;
+	}
 
-  @Override
-  public void accept(Visitor v)
-  {
-    v.visit(this);
-    return;
-  }
+	@Override
+	public void accept(Visitor v)
+	{
+		v.visit(this);
+		return;
+	}
 
 }
