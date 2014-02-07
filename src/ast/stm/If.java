@@ -13,6 +13,14 @@ public class If extends T
 		this.thenn = thenn;
 		this.elsee = elsee;
 	}
+	
+	public If(ast.exp.T condition, T thenn, T elsee)
+	{
+	
+		this.condition = condition;
+		this.thenn = thenn;
+		this.elsee = elsee;
+	}
 
 	@Override
 	public void accept(ast.Visitor v)

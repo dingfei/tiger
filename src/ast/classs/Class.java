@@ -19,6 +19,16 @@ public class Class extends T
 		this.methods = methods;
 		this.lineNum = line;
 	}
+	
+	public Class(ast.exp.Id Id, ast.exp.Id extendss,
+			java.util.LinkedList<ast.dec.T> decs,
+			java.util.LinkedList<ast.method.T> methods)
+	{
+		this.Id = Id;
+		this.extendss = extendss;
+		this.decs = decs;
+		this.methods = methods;
+	}
 
 	@Override
 	public void accept(Visitor v)

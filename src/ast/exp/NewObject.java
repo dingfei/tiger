@@ -10,6 +10,11 @@ public class NewObject extends T
 		this.lineNum = line;
 	}
 
+	public NewObject(ast.exp.Id Id)
+	{
+		this.Id = Id;
+	}
+
 	@Override
 	public void accept(ast.Visitor v)
 	{

@@ -552,8 +552,8 @@ public class Parser
 		ast.stm.T stm = parseStatement();
 		eatToken(Kind.TOKEN_RBRACE);
 		eatToken(Kind.TOKEN_RBRACE);
-		return new ast.mainClass.MainClass((ast.exp.Id) Id1, Id2, stm,
-				this.current.lineNum);
+		return new ast.mainClass.MainClass((ast.exp.Id) Id1, (ast.exp.Id) Id2,
+				stm, this.current.lineNum);
 	}
 
 	// Program -> MainClass ClassDecl*

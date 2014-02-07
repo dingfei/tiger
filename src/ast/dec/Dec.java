@@ -14,6 +14,13 @@ public class Dec extends T
 		this.lineNum = line;
 	}
 
+	public Dec(ast.type.T type, ast.exp.Id Id)
+	{
+		this.type = type;
+		this.Id = Id;
+
+	}
+
 	@Override
 	public void accept(Visitor v)
 	{

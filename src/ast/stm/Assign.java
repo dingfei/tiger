@@ -12,6 +12,12 @@ public class Assign extends T
 		this.exp = exp;
 	}
 
+	public Assign(ast.exp.Id Id, ast.exp.T exp)
+	{
+		this.Id = Id;
+		this.exp = exp;
+	}
+
 	@Override
 	public void accept(ast.Visitor v)
 	{

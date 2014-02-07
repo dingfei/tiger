@@ -12,6 +12,12 @@ public class Lt extends T
 		this.lineNum = line;
 	}
 
+	public Lt(T left, T right)
+	{
+		this.left = left;
+		this.right = right;
+	}
+
 	@Override
 	public void accept(ast.Visitor v)
 	{

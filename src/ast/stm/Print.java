@@ -10,6 +10,11 @@ public class Print extends T
 		this.exp = exp;
 	}
 
+	public Print(ast.exp.T exp)
+	{
+		this.exp = exp;
+	}
+
 	@Override
 	public void accept(ast.Visitor v)
 	{

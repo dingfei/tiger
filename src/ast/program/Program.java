@@ -15,6 +15,13 @@ public class Program extends T
 		this.classes = classes;
 	}
 
+	public Program(ast.mainClass.T mainClass,
+			java.util.LinkedList<ast.classs.T> classes)
+	{
+		this.mainClass = mainClass;
+		this.classes = classes;
+	}
+
 	@Override
 	public void accept(Visitor v)
 	{

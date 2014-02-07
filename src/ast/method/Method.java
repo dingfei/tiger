@@ -25,6 +25,20 @@ public class Method extends T
 		this.retExp = retExp;
 	}
 
+	public Method(ast.type.T retType, String id,
+			java.util.LinkedList<ast.dec.T> formals,
+			java.util.LinkedList<ast.dec.T> locals,
+			java.util.LinkedList<ast.stm.T> stms, ast.exp.T retExp)
+	{
+
+		this.retType = retType;
+		this.id = id;
+		this.formals = formals;
+		this.locals = locals;
+		this.stms = stms;
+		this.retExp = retExp;
+	}
+
 	@Override
 	public void accept(Visitor v)
 	{

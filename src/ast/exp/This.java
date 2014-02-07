@@ -7,6 +7,10 @@ public class This extends T
 		this.lineNum = line;
 	}
 
+	public This()
+	{
+	}
+
 	@Override
 	public void accept(ast.Visitor v)
 	{

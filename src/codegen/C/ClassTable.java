@@ -11,7 +11,10 @@ public class ClassTable
 
 	public void init(String current, ast.exp.Id extendss)
 	{
-		this.table.put(current, new ClassBinding(extendss.id));
+		if (extendss == null)
+			this.table.put(current, new ClassBinding(null));
+		else
+			this.table.put(current, new ClassBinding(extendss.id));
 		return;
 	}
 

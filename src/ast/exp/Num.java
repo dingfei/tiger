@@ -10,6 +10,11 @@ public class Num extends T
 		this.lineNum = line;
 	}
 
+	public Num(int num)
+	{
+		this.num = num;
+	}
+
 	@Override
 	public void accept(ast.Visitor v)
 	{
