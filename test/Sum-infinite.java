@@ -5,7 +5,7 @@ class Sum
 		System.out.println(new Doit().doit(101));
 	}
 }
-
+ 
 class Doit
 {
 	public int doit(int n)
